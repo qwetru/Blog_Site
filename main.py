@@ -88,7 +88,10 @@ db.create_all()
 @login_required
 def get_all_posts():
     posts = BlogPost.query.all()
-    return render_template("index.html", all_posts=posts)
+    if current_user.is_authenticated:
+        return render_template("index.html", all_posts=posts)
+    else:
+        return redirect(url_for('login'))
 
 
 @app.route('/register', methods=["GET", "POST"])
