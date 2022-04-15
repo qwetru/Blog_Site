@@ -85,7 +85,6 @@ db.create_all()
 
 
 @app.route('/')
-@login_required
 def get_all_posts():
     posts = BlogPost.query.all()
     if current_user.is_authenticated:
